@@ -15,8 +15,6 @@
                 echo $this->Form->input('last_name', ['label' => 'Apellido']);
                 echo $this->Form->input('email', ['label' => 'Correo']);
                 echo $this->Form->input('password', ['label' => 'Contraseña']);
-                echo $this->Form->input('role' , ['options' => ['admin' => 'Administrador', 'user' => 'Usuario'] , 'label' => 'Rol']);
-                echo $this->Form->input('active', ['label' => 'Activo']);
             ?>
         </fieldset>
         <?= $this->Form->button(__('Crear Usuaro')) ?>
