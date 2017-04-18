@@ -59,29 +59,29 @@ class UsersTable extends Table
 
         $validator
             ->requirePresence('first_name', 'create')
-            ->notEmpty('first_name');
+            ->notEmpty('first_name', 'Rellene este Campo');
 
         $validator
             ->requirePresence('last_name', 'create')
-            ->notEmpty('last_name');
+            ->notEmpty('last_name', 'Rellene este Campo');
 
         $validator
             ->email('email')
             ->requirePresence('email', 'create')
-            ->notEmpty('email');
+            ->notEmpty('email', 'Rellene este Campo');
 
         $validator
             ->requirePresence('password', 'create')
-            ->notEmpty('password');
+            ->notEmpty('password', 'Rellene este Campo');
 
         $validator
             ->requirePresence('role', 'create')
-            ->notEmpty('role');
+            ->notEmpty('role', 'Rellene este Campo');
 
         $validator
             ->boolean('active')
             ->requirePresence('active', 'create')
-            ->notEmpty('active');
+            ->notEmpty('active', 'Rellene este Campo');
 
         return $validator;
     }
@@ -95,7 +95,7 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['email']));
+        $rules->add($rules->isUnique(['email'], 'Ya existe un usuario con este correo'));
 
         return $rules;
     }

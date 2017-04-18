@@ -21,8 +21,7 @@ class CreateDataSeedMigration extends AbstractMigration
                 return $faker->safeEmail();
             },
             'password' => function(){
-                $hasher = new DefaultPasswordHasher();
-                return $hasher->hash('tavo123');
+                return 'tavo123';
             },
             'role' => 'user',
             'active' => function(){

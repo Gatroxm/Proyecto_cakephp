@@ -8,7 +8,7 @@
         <div class="page-header">
             <h2>Crear Usuario</h2>
         </div>
-        <?= $this->Form->create($user) ?>
+        <?= $this->Form->create($user, ['novalidate']) ?>
         <fieldset>
             <?php
                 echo $this->Form->input('first_name', ['label' => 'Nombre']);
