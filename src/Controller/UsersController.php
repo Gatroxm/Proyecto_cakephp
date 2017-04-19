@@ -18,6 +18,7 @@ class UsersController extends AppController
 		parent::beforeFilter($event);
 		$this->Auth->allow(['add']);
 	}
+	
 	public function isAuthorized($user)
     {
         if (isset($user['role']) and $user['role'] === 'user') 
@@ -45,6 +46,11 @@ class UsersController extends AppController
 			{
 				$this->Flash->error('Datos invalidos, por favor intente nueva mente',['key' => 'auth']);
 			}
+		}
+
+		if($this->Auth->user())
+		{
+			return $this->redirect(['controller' => 'Users', 'action' => 'home']);
 		}
 	}
 
@@ -110,5 +116,21 @@ class UsersController extends AppController
             }
         }
         $this->set(compact('user'));
+    }
+
+    public function delete($id){
+    	//debug('Eliminando' .$id);
+    	$this->request->allowMethod(['post', 'delete']);
+    	$user = $this->Users->get($id);
+    	$nombre = $user->first_name;
+    	if($this->Users->delete($user))
+    	{
+    		$this->Flash->success('El usuario/a '.$nombre .' ha sido Eliminado');
+    	}
+    	else
+    	{
+			$this->Flash->error('El usuario/a '.$nombre .' no ha sido Eliminado, porfavor intente nueva mente');
+    	}
+    	return $this->redirect(['action' => 'index']);
     }
 }
